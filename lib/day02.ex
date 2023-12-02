@@ -14,6 +14,40 @@ defmodule Day02 do
     |> Enum.sum
   end
 
+  @doc """
+  Advent of Code 2023 Day 2 Part 2
+
+  ## Examples
+
+      iex> Day02.part2("files/day02_example_part1.txt")
+      2286
+  """
+  def part2(filename) do
+    File.stream!(filename)
+    |> Enum.map(&game_power/1)
+    |> Enum.sum
+  end
+
+  defp game_power(line) do
+    String.split(line, ":")
+    |> Enum.at(-1)
+    |> String.split(";")
+    |> Enum.reduce(%{red: 1, green: 1, blue: 1}, &min_required_cubes/2)
+    |> Map.values
+    |> Enum.reduce(fn (i, acc) -> acc * i end)
+  end
+
+  defp min_required_cubes(input, acc) do
+    Regex.scan(~r/(\d+) (red|green|blue)/, input)
+    |> Enum.reduce(acc, &combine_result/2)
+  end
+
+  defp combine_result(set, acc) do
+    count = String.to_integer(Enum.at(set, 1))
+    colour = String.to_atom(Enum.at(set, 2))
+    Map.merge(acc, %{colour => max(count, acc[colour])})
+  end
+
   defp valid_game(line) do
     String.split(line, ":")
     |> Enum.at(-1)

@@ -17,7 +17,6 @@ defmodule Day07 do
     |> Enum.sort
     |> Enum.with_index
     |> Enum.reduce(0, fn {r, idx}, acc -> acc + (List.last(r) * (idx + 1)) end)
-    |> IO.inspect(charlists: :as_list)
   end
 
   @doc """
@@ -36,7 +35,6 @@ defmodule Day07 do
       [card_type_part2(cards), Enum.map(cards, &card_points_pt2/1), cardstr, String.to_integer(bid)]
     end)
     |> Enum.sort
-    |> IO.inspect(charlists: :as_lists)
     |> Enum.with_index
     |> Enum.reduce(0, fn {r, idx}, acc -> acc + (List.last(r) * (idx + 1)) end)
   end

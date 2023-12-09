@@ -42,4 +42,9 @@ defmodule AdventOfCode2023 do
     IO.puts(Day08.part1("files/day08.input"))
     IO.puts(Day08.part2("files/day08.input"))
   end
+
+  def day9 do
+    IO.puts(Day09.part1("files/day09.input"))
+    IO.puts(Day09.part2("files/day09.input"))
+  end
 end

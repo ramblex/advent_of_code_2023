@@ -8,4 +8,5 @@ defmodule AOCTest do
   doctest Day06
   doctest Day07
   doctest Day08
+  doctest Day09
 end
